@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: poc-postgres-tenant
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tenant_poc
+    ports:
+      - '5434:5432'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
